@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{err}}
+<div class="make">
+    <p>还没做好删除功能,case请写完一个再按+写下一个。不要一次按一堆+</p>
+    <div class="container">
+            <form id="user_content" method="post">
+                <p>行程名称</p><input type="text" name="planname"><br/> <br/>
+                <p>预计出行天数</p><input type="text" name="days"> <br/> <br/>
+                <p>预计出行日期</p><input type="date" name="date"><br/><br/>
+                <!-- case -->
+                <div class="case">
+                    <div class="col-md-4"><p>景点名称</p><input type="text" id="casename0" name="casename0" ></div>
+                    <div class="col-md-4"><p>地点</p><input type="text" id="location0" name="location0"></div>
+                    <div class="col-md-4"><p>日期(第几天)</p><input type="text" id="day0" name="day0"></div>
+                    <div class="col-md-4"><p>游玩时长</p><input type="text" id="hours0" name="hours0"></div>
+                    <div class="col-md-4"><p>景点类型</p><select id="casetype0" name="casetype0">
+                        <option value="food">吃</option>
+                        <option value="shop">买</option>
+                        <option value="play" selected>玩</option>
+                        <option value="view">景</option>
+                        <option value="live">住</option>
+                    <select>
+                    </div>
+                    <div class="col-md-4"><p>备注</p><input type="text" id="description0" name="description0"></div>
+                </div>
+                    <hr />
+                    <span id="newform0"></span>
+                <!-- //case -->
+                <button type="button" id="new">+</button>
+                <input type="submit" id="submit" value="提交">
+            </form>
+    </div>
+</div>
+
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    var num = 0;
+    $("#new").click(function(){
+         $("#newform"+num).load('/plan_form/',{'num':num+1});
+        num = num +1;
+        // $.getJSON('/ajax_form/',function(ret){
+        //     $('#newformhere0').append(ret.aa+num)
+        // });
+    });
+});
+
+
+</script>
+{% endblock content %}

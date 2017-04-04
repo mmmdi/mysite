@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="usercontent">
+	<div class="container">
+		<div class="articles">
+		{%if articles.count == 0 %}
+			{%if user == currentuser%}
+			<p>还没有游记哦，快来写一篇。</p>
+			{%else%}
+			<p>该用户没有写过游记</p>
+			{% endif %}
+		{% else %}
+			{%if user == currentuser%}
+			<h3>我的游记</h3>
+			{%else%}
+			<h3>探访TA的游记</h3>
+			{%endif%}
+			{% for article in articles%}
+				<h4><a href="/article/{{article.id}}">{{article.planname}}</a></h4>
+				<p>{{article.days}}日游</p>
+				<p>游玩项目：
+					{% for case in article.cases.all%}
+					{{case.casename}} 
+					{%endfor%}</p>
+			{%endfor%}
+		{% endif %}
+		</div>
+
+		<div class="plans">
+		{%if plans.count == 0 %}
+			{%if user == currentuser%}
+			<p>还没有行程哦，快来写一篇。</p>
+			{%else%}
+			<p>该用户没写过行程</p>
+			{% endif %}
+		{% else %}
+			{%if user == currentuser%}
+			<h3>我的行程</h3>
+			{%else%}
+			<h3>探访TA的行程</h3>
+			{%endif%}
+			{% for plan in plans%}
+				<h4><a href="/plan/{{plan.id}}">{{plan.planname}}</a></h4>
+				<p>游玩项目：
+					{% for case in plan.cases.all%}
+						{{case.casename}} 
+						{%endfor%}</p>
+				{%endfor%}
+		{% endif %}
+		</div>
+
+		<div class="favorites">
+		{% if user == currentuser%}
+			<h3>我的收藏</h3>
+			{% if fvplans.count != 0%}
+			<h4 style="color:rgb(166, 95, 214)">行程</h4>
+				{% for fvplan in fvplans%}
+				<h4><a href="/plan/{{fvplan.id}}">{{fvplan.planname}}</a></h4>
+				<p>游玩项目：
+					{% for case in fvplan.cases.all%}
+						{{case.casename}} 
+						{%endfor%}</p>
+				{%endfor%}
+			{%endif%}
+			{% if fvarticles.count != 0%}
+			<h4 style="color:rgb(166, 95, 214)">游记</h4>
+				{% for fvarticle in fvarticles%}
+				<h4><a href="/article/{{fvarticle.id}}">{{fvarticle.planname}}</a></h4>
+				<p>游玩项目：
+					{% for case in fvarticle.cases.all%}
+						{{case.casename}} 
+						{%endfor%}</p>
+				{%endfor%}
+			{%endif%}
+		{% endif%}
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

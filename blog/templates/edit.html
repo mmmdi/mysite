@@ -1,0 +1,18 @@
+<div class="case">
+<form method="post" action="/editsubmit/{{plan.id}}/{{case.id}}">
+	<div class="col-md-4"><p>景点名称</p><input type="text" id="casename" value="{{case.casename}}" name="casename"></div>
+	<div class="col-md-4"><p>地点</p><input type="text" id="location" value="{{case.location}}" name="location{{num}}"></div>
+	<div class="col-md-4"><p>日期(第几天)</p><input type="text" id="day" value="{{case.day}}" name="day"></div>
+	<div class="col-md-4"><p>游玩时长</p><input type="text" id="hours" value="{{case.hours}}" name="hours"></div>
+	<div class="col-md-4"><p>景点类型</p><select id="casetype" value="{{case.casetype}}" name="casetype">
+	            <option value="food">吃</option>
+	            <option value="shop">买</option>
+	            <option value="play" selected>玩</option>
+	            <option value="view">景</option>
+	            <option value="live">住</option>
+	<select>
+	</div>
+	<div class="col-md-4"><p>备注</p><input type="text" id="description" value="{{case.description}}" name="description"></div>
+	<input type="submit" id="submit" value="提交">
+</form>
+</div>

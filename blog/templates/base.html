@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Travel</title>
+
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script src="/static/js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+<link href='/static/css/fonts.css' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+<!-- header -->
+    <div class="header">
+        <div class="container">
+            <div class="header-nav">
+                <nav class="navbar navbar-default">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                        <div class="logo">
+                            <a class="navbar-brand" href="/"><i class="glyphicon glyphicon-plane" aria-hidden="true"></i>Itinerary <span>Make Travel Plan Quickly</span></a>
+                        </div>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+                     <ul class="nav navbar-nav">
+                        <li class="hvr-sweep-to-bottom active"><a href="/">首页</a></li>
+                        <li class="hvr-sweep-to-bottom"><a href="/destination">目的地</a></li>
+                        <li class="hvr-sweep-to-bottom"><a href="/make">制作行程</a></li>
+                        <li class="hvr-sweep-to-bottom"><a href="/share">分享游记</a></li>
+                        <li class="hvr-sweep-to-bottom">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/">我的<span class="caret"></span></a>
+                            <ul class="dropdown-menu top" role='manu'>
+                                {% if username %}
+                                <li><a href="/u/">我的首页</a></li>
+                                <li><a href="/logout">退出登录</a></li>
+                                {% else %}
+                                <li><a href="/login">登陆</a></li>
+                                <li><a href="/register">注册</a></li>
+                                <li><a href="/u/">我的行程</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                      </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+            </div>
+        </div>
+    </div>
+<!-- //header -->
+
+{% block content%}
+{% endblock %}
+
+<!-- footer -->
+    <div class="footer">
+        <div class="container">                 
+            <div class="col-md-2 ftr_navi ftr">
+                <h3>导航</h3>
+                <ul>
+                    <li><a href="/">目的地</a></li>
+                    <li><a href="/">制作行程</a></li>
+                    <li><a href="/">我的</a></li>                       
+                </ul>
+            </div>
+
+            <div class="col-md-3 get_in_touch ftr">
+                <h3>联系我们</h3>
+                <p>广州市广州大学城</p>
+                <p>外环东路132号</p>
+                <p>邮编:510006</p>
+                <a href="mailto:info@example.com">key_di@126.com</a>
+            </div>
+            <div class="col-md-5 ftr-logo">
+                <a href="/"><h3>Itinerary <span> Make Travel Plan Quickly</span></h3></a>
+                <p>Copyright &copy; 2017.Ma Di All rights reserved</p>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+<!-- //footer -->
+
+<!-- for bootstrap working -->
+        <script src="/static/js/bootstrap.js"> </script>
+<!-- //for bootstrap working -->
+
+</body>
+</html>

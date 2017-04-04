@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{username}}
+<!-- banner -->
+    <div class="banner">
+        <div class="banner-left">
+            <div class="more"><a href="/share">制定行程</a></div>
+            <p>开始计划一段新的旅程</p>
+        </div>
+        <div class="banner-right">
+            <div class="more"><a href="/make">分享游记</a></div>
+            <p>分享自己的旅程</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+<!-- //banner -->
+
+<!-- banner bottom -->
+    <div class="banner-bottom">
+        <div class="container">
+            <h3>不知道该去哪里，不如看看别人的？</h3>
+            <p class="eveniet">在他人游记或行程中看到感兴趣内容，即可一键加入自己的行程，快来试试。</p>
+            <!-- 不做筛选了。只做搜索。 -->
+            <!-- search -->
+            <center><form class="search" action="/search/" method="post">
+                <input type="text" name="searchkey">
+                <input type="submit" value="搜索">
+            </form></center>
+            <!-- //search -->
+            <div class="banner-bottom-grids">
+                <div class="col-md-4 banner-bottom-grid">
+                    <a href="/article/38">
+                        <img class="img-responsive" src="static/images/banner-left.jpg" alt="">
+                        <div class="captn">
+                            <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i><h4>横穿玛雅文明秘境</h4>
+                            <p>墨西哥城-坎佩切</p>
+                            <p>19天</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 banner-bottom-grid">
+                    <a href="/plan/41">
+                        <img class="img-responsive" src="static/images/banner-left.jpg" alt="">
+                        <div class="captn">
+                            <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i><h4>大理丽江</h4>
+                            <p>大理-丽江-束河古镇</p>
+                            <p>4天</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 banner-bottom-grid">
+                    <a href="#">
+                        <img class="img-responsive" src="static/images/banner-left.jpg" alt="">
+                        <div class="captn">
+                            <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i><h4>Morocco：摩洛哥不一样的时光掌纹</h4>
+                            <p>马拉喀什-舍夫沙万</p>
+                            <p>2天</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- // banner bottom -->
+
+<!-- search -->
+<!-- //search -->
+{% endblock content %}

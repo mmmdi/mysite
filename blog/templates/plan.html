@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+	<div class="article">
+		<h3>{% if username %}
+			<i class="glyphicon glyphicon-heart" aria-hidden="true" title="收藏" id="fvplan" onclick="fvplan({{user.id}},{{plan.id}})"></i>{% endif%} {{plan.planname}} 预计 {{plan.date}} 出发
+		</h3>
+		<center><a href="/u/{{author.id}}">作者 : {{author.nickname}}</a></center>
+		{% if usernname and username != plan.author %}
+		<center><p>点击<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>，把喜欢的景点加入行程</p></center>
+		{% endif%}
+		<div class="col-md-8 articleleft">
+			<a name="before">行前准备</a>
+			<p>{{plan.description|linebreaks}}</p>
+			<hr/>
+			{% for case in cases%}
+				<div id = "old" class="singlecase">
+					<a id="old1{{case.id}}" name="{{case.casename}}">第{{case.day}}天·{{case.location}}·{{case.casename}}·{{case.get_casetype_display}}</a>
+					{% if username%}
+						{% if username != plan.author%}
+							<div class="add col-md-3">
+							<form id="{{case.id}}" method="post">
+							<i class="glyphicon glyphicon-heart" title="收藏" id="fvcase{{case.id}}" onclick="fvcase({{user.id}},{{case.id}})"></i>
+
+							<i id="plus{{case.id}}" class="glyphicon glyphicon-plus" onclick="showhide({{case.id}})"></i>
+							<select name="myplan" id="select{{case.id}}" onchange="test({{case.id}})">
+							<option>我的行程</option>
+							{% for myplan in user.myplan.all%}
+		                        <option value="{{case.id}},{{myplan.id}}" >{{myplan.planname}}</option>
+		                    {% endfor %}
+		                    <select></form>
+		                	</div>
+		                {% endif %}
+		                {% if username == plan.author%}
+			                <div class="edit col-md-3" id="edit{{case.id}}" onclick="edit({{case.id}},{{plan.id}})">
+			                <button>修改</button>
+			                </div>
+		                {% endif %}
+	                {% endif%}
+
+					<p id="old2{{case.id}}">预计游玩{{case.hours}}小时</p>
+					<div id="old3{{case.id}}"><p>备注 : </p>{{case.description|linebreaks}}</div>
+				</div>
+				<span id="here{{case.id}}"></span>
+				<hr/>
+			{%endfor%}
+		</div>
+		<div class="articleright" id="articleright">
+			<p>导航</p>
+			<i class="glyphicon glyphicon-plane" aria-hidden="true"></i><a href="#before"> 行前准备</a>
+			{% for case in cases%}
+			<p><a href="#{{case.casename}}"><i class="glyphicon glyphicon-plane" aria-hidden="true"></i> {{case.casename}}</a></p>
+			{%endfor%}
+
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	$(window).scroll(function(){
+	var oldT = 190;
+	var T = $("body").scrollTop();
+	T = T + oldT + "px";
+	setTimeout(function(){$("#articleright").css("top",T);},20);
+	})
+})
+function test(caseid){
+	var myid=caseid;
+	document.getElementById(myid).submit();
+}
+
+function edit(id,planid){
+	$("#here"+id).load('/edit/',{'caseid':id,'planid':planid});
+	$("#old1"+id).remove();
+	$("#old2"+id).remove();
+	$("#old3"+id).remove();
+	$("#edit"+id).remove();
+}
+
+function showhide(id) {
+	var target=document.getElementById("select"+id);
+	if (target.style.display=="inline"){
+        target.style.display="none";
+    } else {
+        target.style.display="inline";
+    }
+}
+
+function fvplan(userid,planid) {
+	$("#fvplan").load('/fvplan/'+userid+"/"+planid);
+}
+
+function fvcase(userid,caseid) {
+	$("#fvcase"+caseid).load('/fvcase/'+userid+"/"+caseid);
+}
+
+</script>
+{% endblock content %}

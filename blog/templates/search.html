@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="usercontent">
+	<div class="container">
+		<div class="articles">
+		{%if lena == 0 %}
+			<p>没有相关游记，看看其他地方吧。</p>
+		{% else %}
+			<h3>相关游记</h3>
+			{% for article in articles%}
+				<h4><a href="/article/{{article.id}}">{{article.planname}}</a></h4>
+				<p>{{article.days}}日游</p>
+				<p>游玩项目：
+					{% for case in article.cases.all%}
+					{{case.casename}} 
+					{%endfor%}</p>
+			{%endfor%}
+		{% endif %}
+		</div>
+		<div class="plans">
+		{%if lenp == 0 %}
+			<p>没有相关行程，看看其他地方吧。</p>
+		{% else %}
+			<h3>相关行程</h3>
+			{% for plan in plans%}
+				<h4><a href="/plan/{{plan.id}}">{{plan.planname}}</a></h4>
+				<p>游玩项目：
+					{% for case in plan.cases.all%}
+						{{case.casename}} 
+						{%endfor%}</p>
+			{%endfor%}
+		{% endif %}
+		</div>
+
+	</div>
+</div>
+
+{% endblock content %}

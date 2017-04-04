@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- form -->
+    <div class="register">
+      <div class="container">
+      <h3>Register</h3>
+      <form method = "post">
+        <font class="error">{{err}}</font><br /><br />
+        <input type="text" placeholder="用户名" name="username"><br /><br />
+        <input type="password" placeholder="密码" name="password"><br /><br />
+        <input type="text" placeholder="电子邮箱" name="email"><br /><br />
+        <input type="text" placeholder="昵称" name="nickname"><br /><br />
+        <input type="text" placeholder="电话号码" name="tel"><br /><br />
+
+        <div class="clearfix"> </div>
+        <input type="submit" value="提交">
+        <input type="reset" value="重置">
+      </form>
+    </div>
+  </div>
+<!-- //form -->
+{% endblock content %}
